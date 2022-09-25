@@ -17,6 +17,7 @@
                             <th scope="col">Author</th>
                             <th scope="col">Title</th>
                             <th scope="col">Date</th>
+                            <th scope="col">Tags</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
@@ -39,6 +40,17 @@
                                 </td>
                                 <td>
                                     {{ $post->post_date }}
+                                </td>
+                                <td>
+                                    <span class="badge badge-pill">
+                                        @if (isset($post->tags))
+                                            @foreach ($post->tags as $tag)
+                                                {{ $tag->name }}
+                                            @endforeach
+                                        @else
+                                            No tag selected for this post
+                                        @endif
+                                    </span>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.posts.edit', $post->slug) }}" class="btn btn-sm btn-success">
