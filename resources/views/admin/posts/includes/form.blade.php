@@ -37,6 +37,29 @@
     @enderror
 </div>
 
+<div class="mb-3">
+    <label for="input-tags" class="form-label">Tags</label>
+    @foreach ($tags as $tag)
+        <div class="form-check form-switch">
+            <input type="checkbox" 
+                name="tags[]" 
+                id="input-tags" 
+                class="form-check-input" 
+                value="{{ $tag->id }}" 
+                {{ $post->tags->contains($tag) ? 'checked' : '' }}>
+
+            <label for="input-tags" class="form-check-label">
+                {{ $tag->name }}
+            </label>
+        </div>
+    @endforeach
+    @error('tags')
+        <div class="alert alert-danger">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
+
 <div class="text-center mt-5">
     <button type="submit" class="btn btn-lg btn-primary text-uppercase fw-bold">Submit post</button>
 </div>
