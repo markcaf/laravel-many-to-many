@@ -26,17 +26,36 @@
                 <div class="mt-3">
                     <div class="card">
                         <ul class="list-group list-group-flush">
-                          <li class="list-group-item"><strong>Author:</strong> {{ $post->user->name }}</li>
-                          <li class="list-group-item"><strong>User roles:</strong> 
-                            @forelse ($post->user->roles as $role)
-                                {{ $role->name }}
-                            @empty
-                                no roles
-                            @endforelse
-                          </li>
-                          <li class="list-group-item"><strong>Post ID:</strong> {{ $post->id }}</li>
-                          <li class="list-group-item"><strong>Post Date:</strong> {{ $post->post_date }}</li>
-                        </ul>
+                            <li class="list-group-item">
+                                <strong>Author:</strong> {{ $post->user->name }}
+                                </li>
+                            <li class="list-group-item">
+                                <strong>User roles:</strong> 
+                                @forelse ($post->user->roles as $role)
+                                    {{ $role->name }}
+                                @empty
+                                    no roles
+                                @endforelse
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Post ID:</strong> {{ $post->id }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Tags:</strong> 
+                                <span class="badge badge-pill">
+                                    @if (isset($post->tags))
+                                        @foreach ($post->tags as $tag )
+                                        {{ $tag->name }} -
+                                        @endforeach
+                                    @else
+                                        No tag selected for this post
+                                    @endif
+                                </span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Post Date:</strong> {{ $post->post_date }}
+                            </li>
+                            </ul>
                     </div>
                 </div>
 
