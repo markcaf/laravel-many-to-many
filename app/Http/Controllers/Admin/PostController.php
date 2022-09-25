@@ -106,6 +106,7 @@ class PostController extends Controller
     public function update(Request $request, $slug)
     {
         $sentData = $request->validate($this->validationRules);
+        $sentData = $request->all();
         $post = Post::where('slug', $slug)->firstOrFail();
         $sentData['slug'] = Str::slug($sentData['title'], '-'). '-' . ($post->id);
         $post->update($sentData);
