@@ -27,12 +27,20 @@
                     <div class="card">
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item"><strong>Author:</strong> {{ $post->user->name }}</li>
+                          <li class="list-group-item"><strong>User roles:</strong> 
+                            @forelse ($post->user->roles as $role)
+                                {{ $role->name }}
+                            @empty
+                                no roles
+                            @endforelse
+                          </li>
+                          <li class="list-group-item"><strong>Post ID:</strong> {{ $post->id }}</li>
                           <li class="list-group-item"><strong>Post Date:</strong> {{ $post->post_date }}</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="col-12 mt-5 d-flex justify-content-center align-items-center">
+                <div class="col-12 mt-4 d-flex justify-content-center align-items-center">
                     <div>
                         <a href="{{ route('admin.posts.edit', $post->slug) }}" class="btn btn btn-success mx-2">
                             Edit
