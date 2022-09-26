@@ -33,7 +33,8 @@ class PostController extends Controller
          * Per recuperare i post dell'utente loggato
          * $posts = Post::where('user_id', Auth::id())->get();
         */
-        $posts = Post::all();
+        // $posts = Post::all();
+        $posts = Post::paginate(10);
         return view('admin.posts.index', compact('posts'));
     }
 
