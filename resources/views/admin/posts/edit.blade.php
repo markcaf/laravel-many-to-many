@@ -6,7 +6,7 @@
             <div class="col-6">
 
                 {{-- Specifico rotta e metodo del form --}}
-                <form action="{{ route('admin.posts.update', $post->slug) }}" method="POST">
+                <form action="{{ route('admin.posts.update', $post->slug) }}" method="POST" enctype="multipart/form-data">
                     {{-- Inserisco CSRF di sicurezza di Laravel --}}
                     @csrf
                     @method('PUT')
