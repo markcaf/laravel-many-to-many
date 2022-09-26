@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-4">
                 <div class="card">
-                    <img class="card-img-top" src="{{ $post->post_image }}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('storage/' . $post->post_image) }}" alt="Card image cap">
                     <div class="card-body">
                       <p class="card-text text-center">Featured image: <br><em>{{ $post->title }}</em></p>
                     </div>
