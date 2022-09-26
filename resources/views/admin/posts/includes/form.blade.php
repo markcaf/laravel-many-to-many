@@ -26,9 +26,9 @@
 
 <div class="mb-3">
     <label for="post_image" class="form-label">Post image</label>
-    <input name="post_image" value="{{ old('post_image', $post->post_image) }}" type="text" class="form-control" id="post_image"
-        aria-describedby="post_imageHelp">
-    <div id="post_imageHelp" class="form-text">Insert here your post image by writing the URL.</div>
+    <input name="post_image" value="{{ old('post_image', $post->post_image) }}" type="file" class="form-group" id="post_image"
+        aria-describedby="post_imageHelp" >
+    <div id="post_imageHelp" class="form-text">Insert here your post image.</div>
 
     @error('post_image')
         <div class="alert alert-danger">
