@@ -8,6 +8,7 @@ use App\Models\Tag;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -16,7 +17,7 @@ class PostController extends Controller
     protected $validationRules = [
         'title' => 'required|string|min:3|max:255',
         'post_content' => 'required|min:3|string',
-        'post_image' => 'active_url',
+        'post_image' => 'image|max:256',
         'tags' => 'exists:tags,id'
     ];
 
@@ -63,6 +64,7 @@ class PostController extends Controller
         $sentData['post_date'] = new DateTime();
         $lastPostId = Post::orderBy('id', 'desc')->first();
         $sentData['slug'] = Str::slug($sentData['title'], '-'). '-' . ($lastPostId->id + 1);
+        $sentData['post_image'] = Storage::put('uploads', $sentData['post_image']);
 
         $post = new Post();
         $post->fill($sentData);
@@ -110,6 +112,7 @@ class PostController extends Controller
         $sentData = $request->all();
         $post = Post::where('slug', $slug)->firstOrFail();
         $sentData['slug'] = Str::slug($sentData['title'], '-'). '-' . ($post->id);
+        $sentData['post_image'] = Storage::put('uploads', $sentData['post_image']);
         $post->update($sentData);
         $post->tags()->sync($sentData['tags']);
 
